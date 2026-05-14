@@ -2,7 +2,7 @@ locals {
   ami_type               = "AL2_x86_64"
   azs                    = slice(data.aws_availability_zones.available.names, 0, 3)
   capacity_type          = "SPOT"
-  cluster_name           = "course-project"
+  cluster_name           = "anilgonul-cluster"
   cluster_version        = "1.35"
   disk_size              = 30
   enable_cluster_creator = true

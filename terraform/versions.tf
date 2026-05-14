@@ -2,23 +2,29 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 6.0"
+      version = "5.41.0"
     }
+  }
+
+  backend "s3" {
+    bucket  = "course-project-terraform-states"
+    encrypt = true
+    key     = "terraform/eks/terraform.tfstate"
+    region  = "eu-north-1"
   }
 }
 
-# Configure the AWS Provider
 provider "aws" {
-  region = "eu-north-1"
+  region = var.region
 
   default_tags {
     tags = {
-        owner = "anilgonul"
+      owner = "anilgonul"
     }
   }
 }
 
-# Create a VPC
-resource "aws_vpc" "example" {
-  cidr_block = "10.0.0.0/16"
+variable "region" {
+  description = "aws region"
+  default     = "eu-north-1"
 }
